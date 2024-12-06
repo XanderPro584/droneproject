@@ -1,0 +1,55 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 1000
+
+    arm_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+    gripper_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+# Turn this on when using forward command controller
+    # gripper_controller:
+    #   type: forward_command_controller/ForwardCommandController
+
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+
+# for arm trajectory controller
+arm_controller:
+  ros__parameters:
+    joints:
+      - joint_1
+      - joint_2
+      - joint_3
+
+    command_interfaces:
+      - position
+
+    state_interfaces:
+      - position
+
+    open_loop_control: true
+    allow_integration_in_goal_trajectories: true
+
+
+# for gripper trajectory controller
+gripper_controller:
+  ros__parameters:
+    joints:
+      - joint_4
+
+
+    # interface_name: position
+
+# Comment out if using forward command controller
+    command_interfaces:
+      - position
+
+    state_interfaces:
+      - position
+
+    open_loop_control: true
+    allow_integration_in_goal_trajectories: true
